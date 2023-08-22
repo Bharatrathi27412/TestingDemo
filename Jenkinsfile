@@ -21,14 +21,28 @@
 //     }
 // }
 
+// pipeline {
+//     agent {
+//         docker { image 'node:18.17.1-alpine3.18' }
+//     }
+//     stages {
+//         stage('Test') {
+//             steps {
+//                 echo 'node --version'
+//             }
+//         }
+//     }
+// }
+
 pipeline {
-    agent {
-        docker { image 'node:18.17.1-alpine3.18' }
-    }
+    agent any
     stages {
-        stage('Test') {
-            steps {
-                echo 'node --version'
+        stage ('Pulling Image'){
+            steps{
+                script {
+                    sh 'docker run -it -d node'
+                    sh 'echo "hello jenkins"'
+                }
             }
         }
     }
