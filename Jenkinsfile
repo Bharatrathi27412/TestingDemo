@@ -21,18 +21,13 @@
 //     }
 // }
 
-JENKINS_HOME = '\\mnt\\c\\ProgramData\\Jenkins\\.jenkins\\jobs\\TestingDemo\\workspace'
+
 pipeline {
-    agent {
-        docker { image 'node:18.17.1-alpine3.18' }
-    }
+    agent any
     stages {
         stage('Test') {
-            environment {
-                  HOME="."
-                }
             steps {
-                echo 'node --version'
+                powershell 'docker pull node'
             }
         }
     }
