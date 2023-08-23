@@ -21,29 +21,29 @@
 //     }
 // }
 
-// pipeline {
-//     agent {
-//         docker { image 'node:18.17.1-alpine3.18' }
-//     }
-//     stages {
-//         stage('Test') {
-//             steps {
-//                 echo 'node --version'
-//             }
-//         }
-//     }
-// }
-
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:18.17.1-alpine3.18' }
+    }
     stages {
-        stage ('Pulling Image'){
-            steps{
-                script {
-                    sh 'docker run -it -d node'
-                    sh 'echo "hello jenkins"'
-                }
+        stage('Test') {
+            steps {
+                echo 'node --version'
             }
         }
     }
 }
+
+// pipeline {
+//     agent any
+//     stages {
+//         stage ('Pulling Image'){
+//             steps{
+//                 // This step should not normally be used in your script. Consult the inline help for details.
+//                 withDockerContainer(args: '-it -d', image: 'node') {
+//                 // some block
+// }
+//             }
+//         }
+//     }
+// }
