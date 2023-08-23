@@ -28,6 +28,9 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                environment {
+                  HOME="."
+                }
                 echo 'node --version'
             }
         }
